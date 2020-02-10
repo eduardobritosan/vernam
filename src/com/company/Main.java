@@ -4,22 +4,27 @@ import java.lang.reflect.Array;
 import java.math.BigInteger;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.security.SecureRandom;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        System.out.print("Introducir el mensaje original : ");
+        Scanner scanner = new Scanner(System. in);
+        String inputString = scanner. nextLine();
+
         Random rnd = new Random();
-        String M = "SOL";
-        byte MBytes[] = M.getBytes(Charset.forName("ASCII"));
+        byte[] MBytes = inputString.getBytes(StandardCharsets.US_ASCII);
         //byte[] K = { 60, 24, 115};
-        byte K[] = new byte[MBytes.length];
+        byte[] K = new byte[MBytes.length];
         new SecureRandom().nextBytes(K);
-        byte CBytes[] = new byte[MBytes.length];
-        byte DCBytes[] = new byte[MBytes.length];
+        byte[] CBytes = new byte[MBytes.length];
+        byte[] DCBytes = new byte[MBytes.length];
 
         //Cifrado
         vernamCipher(MBytes, K, CBytes);
@@ -27,7 +32,7 @@ public class Main {
         //Descifrado
         vernamCipher(CBytes, K, DCBytes);
 
-        System.out.println("Mensaje original: " + M);
+        System.out.println("Mensaje original: " + inputString);
         System.out.println("Mensaje original en binario: " + BytesAsBinaryString(MBytes));
         System.out.println("Longitud del mensaje en binario: " + MBytes.length * 8);
 
@@ -44,11 +49,11 @@ public class Main {
     }
 
     private static String BytesAsBinaryString(byte[] byteArray){
-        String result = new String();
+        StringBuilder result = new StringBuilder();
         for (byte b : byteArray) {
-            result += Integer.toBinaryString(b & 255 | 256).substring(1);
+            result.append(Integer.toBinaryString(b & 255 | 256).substring(1));
         }
-        return result;
+        return result.toString();
     }
 
     private static String BytesAsAsciiString(byte[] byteArray){

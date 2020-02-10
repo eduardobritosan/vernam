@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="vernam:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/vernam_jar</output-path>
+    <root id="archive" name="vernam.jar">
+      <element id="module-output" name="vernam" />
+    </root>
+  </artifact>
+</component>
