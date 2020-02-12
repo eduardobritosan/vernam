@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="vernam">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/out/artifacts/vernam_jar/vernam.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
